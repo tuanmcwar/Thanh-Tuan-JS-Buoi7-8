@@ -49,7 +49,7 @@ function minArray(arr) {
       min = newArr[i];
     }
   }
-  document.getElementById("txtMin").innerHTML = min;
+  document.getElementById("txtMin").innerHTML = "Số nhỏ nhất: " + min;
   return min;
 }
 
