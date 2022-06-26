@@ -31,7 +31,7 @@ function countArray() {
       arrayPositive.push(numArray[i]);
     }
   }
-  document.getElementById("txtCount").innerHTML = count;
+  document.getElementById("txtCount").innerHTML = "Số dương: " + count;
   return arrayPositive;
 }
 
@@ -66,12 +66,19 @@ function findBarelyLast() {
   var barely = [];
   var barelyLast = "";
   for (var i = 0; i < numArray.length; i++) {
-    if (numArray[i] % 2 === 0) {
+    if (numArray[i] % 2 === 0 && numArray[i] >= 0) {
       barely.push(numArray[i]);
     }
   }
   barelyLast = barely[barely.length - 1];
-  document.getElementById("txtBarelyLast").innerHTML = barelyLast;
+
+  if (barely.length > 0) {
+    document.getElementById("txtBarelyLast").innerHTML =
+      "Số chẵn cuối cùng:" + barelyLast;
+  } else {
+    document.getElementById("txtBarelyLast").innerHTML =
+      "Số chẵn cuối cùng:" + -1;
+  }
 }
 function swap(arr, a, b) {
   var b = arr[b];
@@ -98,13 +105,27 @@ function raiseArray() {
   document.getElementById("txtraiseArray").innerHTML =
     "Mảng sau khi sắp xếp: " + numArray;
 }
-function primeArray() {
-  for (var i = 0; i < numArray.length; i++) {
-    if (numArray[i] % 1 === 0 && numArray[i] % numArray[i] === 0) {
-      document.getElementById("txtPrime").innerHTML =
-        "Số nguyên tố đầu tiên là: " + numArray[i];
-      break;
+function isNt(n) {
+  var i = 2;
+  while (i <= Math.sqrt(n)) {
+    if (n % i == 0) {
+      return false;
     }
+    i++;
+  }
+  return true;
+}
+function primeArray() {
+  if (numArray.length > 0) {
+    for (var i = 0; i < numArray.length; i++) {
+      if (isNt(numArray[i]) && numArray[i] > 0) {
+        document.getElementById("txtPrime").innerHTML =
+          "Số nguyên tố đầu tiên là: " + numArray[i];
+        break;
+      }
+    }
+  } else {
+    document.getElementById("txtPrime").innerHTML = "-1";
   }
 }
 
